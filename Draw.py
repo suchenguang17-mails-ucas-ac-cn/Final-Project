@@ -11,7 +11,7 @@ def update_lines(num, data, line):
     return line
 
 
-def Draw(para, filename = 'myvideo.mp4'):
+def Draw_anima(para, filename = 'myvideo.mp4'):
     data = Calculate.Alogrithim(para[0], para[1], para[2], para[3], para[4], para[5], para[6], para[7])
     fig = plt.figure(figsize = (6,6))
     ax = fig.add_subplot(111, projection = "3d")
@@ -38,5 +38,23 @@ def Draw(para, filename = 'myvideo.mp4'):
     line_ani.save(filename, writer=mywriter)
 
 
+def Draw_static(para, filename = '../Project_Pictures/mypicture.png'):
+    data = Calculate.Alogrithim(para[0], para[1], para[2], para[3], para[4], para[5], para[6], para[7])
+    fig = plt.figure(figsize = (6,6))
+    ax = fig.add_subplot(111, projection = "3d")
+
+    ax.set_xlim3d([-20, 20])
+    ax.set_xlabel('X')
+
+    ax.set_ylim3d([-20, 20])
+    ax.set_ylabel('Y')
+
+    ax.set_zlim3d([0, 40])
+    ax.set_zlabel('Z')
+
+    ax.set_title('3D Test')
+    ax.plot(data[0], data[1], data[2])
+
+    plt.savefig(filename)
 
 
