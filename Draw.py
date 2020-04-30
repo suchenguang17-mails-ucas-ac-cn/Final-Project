@@ -43,18 +43,21 @@ def Draw_static(para, filename = '../Project_Pictures/mypicture.png'):
     fig = plt.figure(figsize = (6,6))
     ax = fig.add_subplot(111, projection = "3d")
 
-    ax.set_xlim3d([-20, 20])
+    #ax.set_xlim3d([-20, 20])
     ax.set_xlabel('X')
 
-    ax.set_ylim3d([-20, 20])
+    #ax.set_ylim3d([-20, 20])
     ax.set_ylabel('Y')
 
-    ax.set_zlim3d([0, 40])
+    #ax.set_zlim3d([0, 40])
     ax.set_zlabel('Z')
 
     ax.set_title('3D Test')
-    ax.plot(data[0], data[1], data[2])
+    ax.plot(data[0], data[1], data[2], lw = 0.6, color = 'g')
 
     plt.savefig(filename)
+
+
+
 
 
