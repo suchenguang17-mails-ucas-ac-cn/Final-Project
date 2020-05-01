@@ -26,7 +26,13 @@ def draw_R_static(N1, N2):
                 ]
 
     for i in range(len(para_static_R)):
-        para_static_R[i].append("../Project_Pictures/tendency/" + str(i) + ".png")
+        P = para_static_R[i][5]
+        R = para_static_R[i][4]
+        para_static_R[i][5] = R
+        para_static_R[i][4] = P
+
+    for i in range(len(para_static_R)):
+        para_static_R[i].append("../Project_Pictures/tendency/" + str(i) + "modified.png")
 
     for i in range(N1, N2):
         Draw.Draw_static(para_static_R[i][0:8], para_static_R[i][8])
