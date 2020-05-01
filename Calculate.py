@@ -11,12 +11,7 @@ def Alogrithim(x = 20, y = 1, z = 11, T = 50, R = 28, P = 10, B = 8 / 3, t = 0):
     z_values = [z]
     #t_values = np.array([t])
     
- '''   
-    dx_values = np.array([P * (y - x)])
-    dy_values = np.array([R * x - y - x * z])
-    dz_values = np.array([x * y - B * z])
-    # establish some lists to store values
-'''    
+   
     N = 100000
     # slice number and initial values
 
@@ -73,3 +68,9 @@ def Alogrithim(x = 20, y = 1, z = 11, T = 50, R = 28, P = 10, B = 8 / 3, t = 0):
         dz_values.append(vz)
         # store the t_values
 '''
+'''   
+    dx_values = np.array([P * (y - x)])
+    dy_values = np.array([R * x - y - x * z])
+    dz_values = np.array([x * y - B * z])
+    # establish some lists to store values
+''' 
