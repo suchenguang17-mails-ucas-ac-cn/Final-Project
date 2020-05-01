@@ -1,4 +1,5 @@
 import Draw
+#all P and R should exchange their positions
 '''
 paras_anima = [
     [20, 1, 11, 50, 10, 28, 8/3, 0, "../Project_Videos/firsttry.mp4"],

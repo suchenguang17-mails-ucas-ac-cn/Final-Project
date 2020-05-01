@@ -11,7 +11,7 @@ def fix_point(R, P ,B):
         x_y=cm.sqrt(B*(R-1))
     else:
         x_y=np.sqrt(B*(R-1))
-    return ([x_y,x_y,z],[-x_y,-x_y,z])
+    return np.array([[x_y,x_y,z],[-x_y,-x_y,z]])
     
 #define a function to calculate the fixed points
 #the results are stored in a 2D array
