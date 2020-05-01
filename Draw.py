@@ -7,10 +7,10 @@ import os
 import Calculate
 import Fixed_Points
 
-def update_lines(num, data, line):
+def update_lines_time(num, data, line, time, T):
     line.set_data_3d(data[:, :100*num])
-
-    return line
+    time.set_text("T = {0:.1f}".format(T / 100000 * 100 * num))
+    return line, time
 
 
 def Draw_anima(para, filename = 'myvideo.mp4'):
@@ -18,20 +18,39 @@ def Draw_anima(para, filename = 'myvideo.mp4'):
     fig = plt.figure(figsize = (6,6))
     ax = fig.add_subplot(111, projection = "3d")
     line, = ax.plot(data[0,0:2], data[1,0:2], data[2,0:2], lw = 0.6, color = 'g')
+
+    edges = []
+    for i in range(3):
+        ax_min = np.min(data[i])
+        ax_max = np.max(data[i])
+        gap = (ax_max - ax_min) / 20
+        edges.append([ax_min - gap, ax_max + gap])
+
+    time = ax.text(edges[0][0], edges[1][1], edges[2][1], "T = 0")
+
+    ax.scatter(data[0,0], data[1,0], data[2,0], lw = 0.8, alpha = 0.5, color = 'b', label = "Start Point")
+    ax.scatter(data[0,-1], data[1,-1], data[2,-1], lw = 0.8, alpha = 0.5, color = 'r', label = "Last Point")
+    ax.scatter(0, 0, 0, lw = 0.8, color = 'black', alpha = 0.5, label = "Origin")
+    
+    if para[4] > 1:
+        p = Fixed_Points.fix_point(para[4], para[5], para[6])
+        ax.scatter(p[:,0],p[:,1],p[:,2], color = "brown", alpha = 0.5, lw = 0.8, label = "Fixed Points")
+
+    ax.legend(loc = "best")
     # Setting the axes properties
-    #ax.set_xlim3d([-20, 20])
+    ax.set_xlim3d(edges[0])
     ax.set_xlabel('X')
 
-  #  ax.set_ylim3d([-20, 20])
+    ax.set_ylim3d(edges[1])
     ax.set_ylabel('Y')
 
-   # ax.set_zlim3d([0, 40])
+    ax.set_zlim3d(edges[2])
     ax.set_zlabel('Z')
 
     #ax.set_title('3D Test')
 
     # Creating the Animation object
-    line_ani = animation.FuncAnimation(fig, update_lines, frames = 1000, fargs=(data, line), blit=False)
+    line_ani = animation.FuncAnimation(fig, update_lines_time, frames = 1000, fargs=(data, line, time, para[3]), blit=False)
 
     ffmpegpath = os.path.abspath("../../ffmpeg/ffmpeg-20200422-2e38c63-win64-static/ffmpeg-20200422-2e38c63-win64-static/bin/ffmpeg.exe")
     matplotlib.rcParams["animation.ffmpeg_path"] = ffmpegpath
@@ -56,13 +75,13 @@ def Draw_static(para, filename = '../Project_Pictures/mypicture.png'):
 
     #ax.set_title('3D Test')
     ax.plot(data[0], data[1], data[2], lw = 0.6, color = 'g')
-    ax.scatter(data[0:0], data[1:0], data[2:0], lw = 0.8, color = 'b', label = "Start Point")
-    ax.scatter(data[0:-1], data[1:-1], data[2:-1], lw = 0.8, color = 'r', label = "Last Point")
-    ax.scatter(0, 0, 0, lw = 0.8, color = 'black')
+    ax.scatter(data[0,0], data[1,0], data[2,0], lw = 0.8, alpha = 0.5, color = 'b', label = "Start Point")
+    ax.scatter(data[0,-1], data[1,-1], data[2,-1], lw = 0.8, alpha = 0.5, color = 'r', label = "Last Point")
+    ax.scatter(0, 0, 0, lw = 0.8, color = 'brown', alpha = 0.5, label = "Origin")
     
     if para[4] > 1:
         p = Fixed_Points.fix_point(para[4], para[5], para[6])
-        ax.scatter(p[:,0],p[:,1],p[:,2], color = "black", lw = 0.8, label = "Fixed Points")
+        ax.scatter(p[:,0],p[:,1],p[:,2], color = "black", alpha = 0.5, lw = 0.8, label = "Fixed Points")
 
     ax.legend(loc = "best")
 
