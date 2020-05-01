@@ -5,17 +5,17 @@ import cmath as cm
 import matplotlib.pyplot as plt
 #import all the packages
 
-def fix_point(R,P,B):
+def fix_point(R, P ,B):
     z=R-1
     if R-1<0:
         x_y=cm.sqrt(B*(R-1))
     else:
         x_y=np.sqrt(B*(R-1))
-    return [x_y,x_y,z],[-x_y,-x_y,z]
-
+    return ([x_y,x_y,z],[-x_y,-x_y,z])
+    
 #define a function to calculate the fixed points
 #the results are stored in a 2D array
-
+'''
 R=np.linspace(0,168,10000)
 P=10
 B=8/3
@@ -29,3 +29,4 @@ for i in R:
 #calculate the fixed point
 
 print(fix1)
+'''

@@ -1,5 +1,5 @@
 import Draw
-
+'''
 paras_anima = [
     [20, 1, 11, 50, 10, 28, 8/3, 0, "../Project_Videos/firsttry.mp4"],
     [20, 1, 11, 50, 10, 28, 5/3, 0, "../Project_Videos/secondtry.mp4"],
@@ -31,6 +31,9 @@ for i in range(100):
 
 for para in para_static_R:
     Draw.Draw_static(para[0:8], para[8])
+'''
+para_test = [8.6, 8.6, 28, 100, 10, 28, 8 / 3, 0, "../Project_Pictures/test.png"]
+Draw.Draw_static(para_test[0:8], para_test[8])
 '''
 for para in paras_anima:
     Draw.Draw_anima(para[0:8], para[8])
