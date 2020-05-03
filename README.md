@@ -1,3 +1,8 @@
-# Final-Project
-大家把自己改的代码先放到draft-codes的branch上，一致同意之后再放到masterbranch上。
-# first change
+# Calculate.py
+Alogarithm to solve the ODE equations numerically and function to calculate the fixed points of the Lorentz attractor given initail valuse and parameters
+
+# Draw.py
+Draw functions to draw 3d animation and 3d final result static plot
+
+# multiprocessing_draw.py
+Draw animations and static plots using multiprocessing method to save time
