@@ -1,8 +1,10 @@
+#Use multiprocessing to draw animations or static plots of a lot of different parameter sets
 import Draw
 import multiprocessing as  mp
 
-def draw_R_static(N1, N2):
-    para_static_R = [
+#Use N1 and N2 to divide tasks
+def draw_R(N1, N2, draw_type):
+    para_R = [
                  [-10, 0, 5, 100, 0.2, 0.6, 13, 0], [2, 3, -4, 100, 0.9, 10, 8 / 3, 0],
                  [2, 3, -4, 100, 0.1, 1, 6, 0], [160, 10, 2, 100, 0.7, 2, 5, 0],
                  [1.e-4, 0, 1, 100, 0.9, 10, 8 / 3, 0], [1.e-4, 0, 1, 100, 0.95, 10, 8 / 3, 0],
@@ -21,34 +23,39 @@ def draw_R_static(N1, N2):
                  [1, 1, -1, 100, 167, 10, 8 / 3, 0], [1, 1, -.95, 100, 167, 10, 8 / 3, 0],
     ]
 
+    if draw_type == "anima":
+        for i in range(len(para_R)):
+            para_R[i].append("../Project_Videos/tendency/" + str(i) + "all.mp4")
 
-    for i in range(len(para_static_R)):
-        para_static_R[i].append("../Project_Videos/tendency/" + str(i) + "all.mp4")
+        for i in range(N1, N2):
+            Draw.Draw_anima(para_R[i][0:8], para_R[i][8])
 
-    for i in range(N1, N2):
-        Draw.Draw_anima(para_static_R[i][0:8], para_static_R[i][8])
+    if draw_type == "static":
+        for i in range(len(para_R)):
+            para_R[i].append("../Project_Pictures/tendency/" + str(i) + "all.png")
 
-if __name__ == '__main__':
-    p1 = mp.Process(target=draw_R_static, args=(0, 8))
-    p2 = mp.Process(target=draw_R_static, args=(8, 16))
-    p3 = mp.Process(target=draw_R_static, args=(16, 24))
-    p4 = mp.Process(target=draw_R_static, args=(24, 32))
+        for i in range(N1, N2):
+            Draw.Draw_static(para_R[i][0:8], para_R[i][8])
+    
+    else:
+        return "Wrong Draw Type!"
 
-    p1.start()
-    p2.start()
-    p3.start()
-    p4.start()
-    p1.join()
-    p2.join()
-    p3.join()
-    p4.join()
+#Build Multiprocess
+def multi_draw_R(draw_type):
+    if __name__ == '__main__':
+        p1 = mp.Process(target=draw_R, args=(0, 8,  draw_type))
+        p2 = mp.Process(target=draw_R, args=(8, 16, draw_type))
+        p3 = mp.Process(target=draw_R, args=(16, 24, draw_type))
+        p4 = mp.Process(target=draw_R, args=(24, 32, draw_type))
 
+        p1.start()
+        p2.start()
+        p3.start()
+        p4.start()
+        p1.join()
+        p2.join()
+        p3.join()
+        p4.join()
 
-   # [
-                 # 上面两个能不能画到一张图里面
-                 
-#                 [ 1, 1, -1,100, 144, 10, 8 / 3,  0], [1, 1, -.95,  100, 144, 10, 8 / 3, 0],
- #                [1, 1, -1, 100, 167, 10, 8 / 3, 0], [1, 1, -.95, 100, 167, 10, 8 / 3, 0]'''
-    #             [8.6, 8.5, 28, 100, 80, 10, 8 / 3, 0], [8.6, 8.6, 28.1, 100, 80, 10, 8 / 3, 0],
-     #            [8.6, 8.7, 28, 100, 80, 10, 8 / 3, 0], [8.6, 8.6, 28, 100, 80, 10, 8 / 3, 0]
-      #          ]
+multi_draw_R("static")
+multi_draw_R("anima")

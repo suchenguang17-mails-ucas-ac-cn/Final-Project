@@ -1,8 +1,8 @@
 # Final Project Calculation Part
 import numpy as np
 import matplotlib.pyplot as plt
-import scipy as sp
 import copy as cp
+import cmath as cm
 
 def Alogrithim(x = 20, y = 1, z = 11, T = 50, R = 28, P = 10, B = 8 / 3, t = 0):
     
@@ -58,19 +58,13 @@ def Alogrithim(x = 20, y = 1, z = 11, T = 50, R = 28, P = 10, B = 8 / 3, t = 0):
 
     data = np.array([x_values, y_values, z_values])
     return data
-'''      
-        x_values.append(x)
-        y_values.append(y)
-        z_values.append(z)
-        t_values.append(t)
-        dx_values.append(vx)
-        dy_values.append(vy)
-        dz_values.append(vz)
-        # store the t_values
-'''
-'''   
-    dx_values = np.array([P * (y - x)])
-    dy_values = np.array([R * x - y - x * z])
-    dz_values = np.array([x * y - B * z])
-    # establish some lists to store values
-''' 
+
+#define a function to calculate the fixed points
+#the results are stored in a 2D array
+def fix_point(R, P ,B):
+    z=R-1
+    if R-1<0:
+        x_y=cm.sqrt(B*(R-1))
+    else:
+        x_y=np.sqrt(B*(R-1))
+    return np.array([[x_y,x_y,z],[-x_y,-x_y,z]])
