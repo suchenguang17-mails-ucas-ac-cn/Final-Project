@@ -5,6 +5,7 @@ import multiprocessing as  mp
 #Use N1 and N2 to divide tasks
 def draw_R(N1, N2, draw_type):
     para_R = [
+
                  [-10, 0, 5, 100, 0.2, 0.6, 13, 0], [2, 3, -4, 100, 0.9, 10, 8 / 3, 0],
                  [2, 3, -4, 100, 0.1, 1, 6, 0], [160, 10, 2, 100, 0.7, 2, 5, 0],
                  [1.e-4, 0, 1, 100, 0.9, 10, 8 / 3, 0], [1.e-4, 0, 1, 100, 0.95, 10, 8 / 3, 0],
@@ -32,7 +33,7 @@ def draw_R(N1, N2, draw_type):
 
     if draw_type == "static":
         for i in range(len(para_R)):
-            para_R[i].append("../Project_Pictures/tendency/" + str(i) + "all.png")
+            para_R[i].append("../Project_Pictures/tendency/" + str(i) + "test.png")
 
         for i in range(N1, N2):
             Draw.Draw_static(para_R[i][0:8], para_R[i][8])
@@ -43,7 +44,7 @@ def draw_R(N1, N2, draw_type):
 #Build Multiprocess
 def multi_draw_R(draw_type):
     if __name__ == '__main__':
-        p1 = mp.Process(target=draw_R, args=(0, 8,  draw_type))
+        p1 = mp.Process(target=draw_R, args=(0, 9,  draw_type))
         p2 = mp.Process(target=draw_R, args=(8, 16, draw_type))
         p3 = mp.Process(target=draw_R, args=(16, 24, draw_type))
         p4 = mp.Process(target=draw_R, args=(24, 32, draw_type))
@@ -57,5 +58,6 @@ def multi_draw_R(draw_type):
         p3.join()
         p4.join()
 
-multi_draw_R("static")
-multi_draw_R("anima")
+draw_R(0,2,"static")
+#multi_draw_R("static")
+#multi_draw_R("anima")
