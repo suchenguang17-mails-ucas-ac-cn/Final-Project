@@ -26,17 +26,17 @@ def draw_R(N1, N2, draw_type):
 
     if draw_type == "anima":
         for i in range(len(para_R)):
-            para_R[i].append("../Project_Videos/tendency/" + str(i) + "all.mp4")
+            para_R[i].append("../Project_Videos/tendency/" + str(i) + "Test.mp4")
 
         for i in range(N1, N2):
-            Draw.Draw_anima(para_R[i][0:8], para_R[i][8])
+            Draw.Draw(para_R[i][0:8], para_R[i][8], "anima")
 
     if draw_type == "static":
         for i in range(len(para_R)):
-            para_R[i].append("../Project_Pictures/tendency/" + str(i) + "test.png")
+            para_R[i].append("../Project_Pictures/tendency/" + str(i) + "TEST.png")
 
         for i in range(N1, N2):
-            Draw.Draw_static(para_R[i][0:8], para_R[i][8])
+            Draw.Draw(para_R[i][0:8], para_R[i][8], "static")
     
     else:
         return "Wrong Draw Type!"
@@ -44,7 +44,7 @@ def draw_R(N1, N2, draw_type):
 #Build Multiprocess
 def multi_draw_R(draw_type):
     if __name__ == '__main__':
-        p1 = mp.Process(target=draw_R, args=(0, 9,  draw_type))
+        p1 = mp.Process(target=draw_R, args=(0, 8,  draw_type))
         p2 = mp.Process(target=draw_R, args=(8, 16, draw_type))
         p3 = mp.Process(target=draw_R, args=(16, 24, draw_type))
         p4 = mp.Process(target=draw_R, args=(24, 32, draw_type))
