@@ -58,6 +58,5 @@ def multi_draw_R(draw_type):
         p3.join()
         p4.join()
 
-draw_R(0,2,"static")
-#multi_draw_R("static")
-#multi_draw_R("anima")
+multi_draw_R("static")
+multi_draw_R("anima")
