@@ -63,7 +63,7 @@ def Draw(para, filename, draw_type):
     if draw_type == "static":
         #Draw the static final plot
         ax.plot(data[0], data[1], data[2], lw = 0.6, color = 'g')
-        ax.text(edges[0][0], edges[1][1], edges[2][1], "[P,R,B] = [{0},{1},{2}]\n[X,Y,Z] = [{3},{4},{5}]".format(para[4],para[5],para[5],para[0],para[1],para[2]))
+        ax.text(edges[0][0], edges[1][1], edges[2][1], "[R,P,B] = [{0},{1},{2:.2f}]\n[X,Y,Z] = [{3},{4},{5}]".format(para[4],para[5],para[6],para[0],para[1],para[2]))
         plt.savefig(filename)
 
     else:

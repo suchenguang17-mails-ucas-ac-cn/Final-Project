@@ -33,7 +33,7 @@ def draw_R(N1, N2, draw_type):
 
     if draw_type == "static":
         for i in range(len(para_R)):
-            para_R[i].append("../Project_Pictures/tendency/" + str(i) + "TEST.png")
+            para_R[i].append("../Project_Pictures/final/" + str(i) + ".png")
 
         for i in range(N1, N2):
             Draw.Draw(para_R[i][0:8], para_R[i][8], "static")
@@ -59,4 +59,4 @@ def multi_draw_R(draw_type):
         p4.join()
 
 multi_draw_R("static")
-multi_draw_R("anima")
+#multi_draw_R("anima")
