@@ -6,3 +6,6 @@ Draw functions to draw 3d animation and 3d final result static plot
 
 # multiprocessing_draw.py
 Draw animations and static plots using multiprocessing method to save time
+
+#chaotic.py
+Draw comparing graphs under chaotic case
